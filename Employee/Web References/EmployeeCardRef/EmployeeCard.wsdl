@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/page/employeecard" targetNamespace="urn:microsoft-dynamics-schemas/page/employeecard" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/page/employeecard" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:simpleType name="Gender">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="_blank_" />
+          <xsd:enumeration value="Female" />
+          <xsd:enumeration value="Male" />
+          <xsd:enumeration value="Joint" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Employment_Type">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Contract" />
+          <xsd:enumeration value="Permanent" />
+          <xsd:enumeration value="Trustee" />
+          <xsd:enumeration value="Attachee" />
+          <xsd:enumeration value="Intern" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Status">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Active" />
+          <xsd:enumeration value="Inactive" />
+          <xsd:enumeration value="Terminated" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Disabled">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="_blank_" />
+          <xsd:enumeration value="No" />
+          <xsd:enumeration value="Yes" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Marital_Status">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="_blank_" />
+          <xsd:enumeration value="Single" />
+          <xsd:enumeration value="Married" />
+          <xsd:enumeration value="Separated" />
+          <xsd:enumeration value="Divorced" />
+          <xsd:enumeration value="Widow_er" />
+          <xsd:enumeration value="Other" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Ethnic_Origin">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="African" />
+          <xsd:enumeration value="Indian" />
+          <xsd:enumeration value="White" />
+          <xsd:enumeration value="Coloured" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Application_Method">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Manual" />
+          <xsd:enumeration value="Apply_to_Oldest" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Employee_Type">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Permanent" />
+          <xsd:enumeration value="Partime" />
+          <xsd:enumeration value="Locum" />
+          <xsd:enumeration value="Casual" />
+          <xsd:enumeration value="Contract" />
+          <xsd:enumeration value="Trustee" />
+          <xsd:enumeration value="Attachee" />
+          <xsd:enumeration value="Intern" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="Termination_Category">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="_blank_" />
+          <xsd:enumeration value="Resignation" />
+          <xsd:enumeration value="Non_Renewal_Of_Contract" />
+          <xsd:enumeration value="Dismissal" />
+          <xsd:enumeration value="Retirement" />
+          <xsd:enumeration value="Death" />
+          <xsd:enumeration value="Other" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="Insurance_Policies">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Key" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Insurance_Name" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Insurance_Policy_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Deductions_Code" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Insurance_Policies_List">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="unbounded" name="Insurance_Policies" type="tns:Insurance_Policies" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Inactivity_Logs">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Key" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Start_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="End_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="No_of_Days" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Inactivity_Logs_List">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="unbounded" name="Inactivity_Logs" type="tns:Inactivity_Logs" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EmployeeCard">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Key" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="First_Name" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Middle_Name" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Last_Name" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Job_Title" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Initials" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Search_Name" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Gender" type="tns:Gender" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Phone_No_2" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Company_E_Mail" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Last_Date_Modified" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Privacy_Blocked" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="User_ID" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Global_Dimension_1_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Global_Dimension_2_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Section_Unit" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Address" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Address_2" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="City" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="County" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Post_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Country_Region_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="ShowMap" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Mobile_Phone_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Pager" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Extension" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="E_Mail" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Alt_Address_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Alt_Address_Start_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Alt_Address_End_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Job_Position" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Job_Position_Title" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Employment_Type" type="tns:Employment_Type" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Contract_Type" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Contract_Number" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Contract_Length" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Contract_Start_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Contract_End_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Acting_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Control58" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Acting_Description" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Relieved_Employee" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Relieved_Name" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Start_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="End_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Reason_for_Acting" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Employment_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Status" type="tns:Status" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Inactive_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Cause_of_Inactivity_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Termination_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Grounds_for_Term_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Emplymt_Contract_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Statistics_Group_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Resource_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Salespers_Purch_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Birth_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Social_Security_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Union_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Union_Membership_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Disabled" type="tns:Disabled" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Disability" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Disability_Certificate" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Date_of_Birth_Age" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="ID_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Marital_Status" type="tns:Marital_Status" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Religion" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Ethnic_Origin" type="tns:Ethnic_Origin" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Ethnic_Community" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Ethnic_Name" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Home_District" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="First_Language" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Second_Language" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Other_Language" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Employee_Posting_Group" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Application_Method" type="tns:Application_Method" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Bank_Branch_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Bank_Account_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="IBAN" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SWIFT_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PIN_Number" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="NHIF_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Pay_Mode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Employee_x0027_s_Bank" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Employee_Bank_Name" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Bank_Branch" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Employee_Branch_Name" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Employee_Bank_Sort_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Bank_Account_Number" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Posting_Group" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Gratuity_Vendor_No" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Debtor_Code" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Employee_Type" type="tns:Employee_Type" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Salary_Scale" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Present" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Previous" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Halt" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Incremental_Month" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Pays_tax_x003F_" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Secondary_Employee" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Insurance_Relief" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Pro_Rata_Calculated" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="CurrBasicPay" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Basic_Pay" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="House_Allowance" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Insurance_Premium" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Total_Allowances" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Total_Deductions" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Taxable_Allowance" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Cumm_PAYE" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Date_Of_Join" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Probation_Period" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="End_Of_Probation_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Pension_Scheme_Join" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Medical_Scheme_Join" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Retirement_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Notice_Period" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Send_Alert_to" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Served_Notice_Period" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Date_Of_Leaving" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Termination_Category" type="tns:Termination_Category" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Exit_Interview_Date" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Exit_Interview_Done_by" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Allow_Re_Employment_In_Future" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Annual_Leave_Days" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Compassionate_Leave_Days" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Maternity_Leave_Days" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Paternity_Leave_Days" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Sick_Leave_Days" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Study_Leave_Days" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Other_Leave_Days_Total" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Total_Leave_Balance" type="xsd:decimal" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Policies" type="tns:Insurance_Policies_List" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Inactivity" type="tns:Inactivity_Logs_List" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EmployeeCard_List">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="unbounded" name="EmployeeCard" type="tns:EmployeeCard" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="EmployeeCard_Fields">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="No" />
+          <xsd:enumeration value="First_Name" />
+          <xsd:enumeration value="Middle_Name" />
+          <xsd:enumeration value="Last_Name" />
+          <xsd:enumeration value="Job_Title" />
+          <xsd:enumeration value="Initials" />
+          <xsd:enumeration value="Search_Name" />
+          <xsd:enumeration value="Gender" />
+          <xsd:enumeration value="Phone_No_2" />
+          <xsd:enumeration value="Company_E_Mail" />
+          <xsd:enumeration value="Last_Date_Modified" />
+          <xsd:enumeration value="Privacy_Blocked" />
+          <xsd:enumeration value="User_ID" />
+          <xsd:enumeration value="Global_Dimension_1_Code" />
+          <xsd:enumeration value="Global_Dimension_2_Code" />
+          <xsd:enumeration value="Section_Unit" />
+          <xsd:enumeration value="Address" />
+          <xsd:enumeration value="Address_2" />
+          <xsd:enumeration value="City" />
+          <xsd:enumeration value="County" />
+          <xsd:enumeration value="Post_Code" />
+          <xsd:enumeration value="Country_Region_Code" />
+          <xsd:enumeration value="ShowMap" />
+          <xsd:enumeration value="Mobile_Phone_No" />
+          <xsd:enumeration value="Pager" />
+          <xsd:enumeration value="Extension" />
+          <xsd:enumeration value="E_Mail" />
+          <xsd:enumeration value="Alt_Address_Code" />
+          <xsd:enumeration value="Alt_Address_Start_Date" />
+          <xsd:enumeration value="Alt_Address_End_Date" />
+          <xsd:enumeration value="Job_Position" />
+          <xsd:enumeration value="Job_Position_Title" />
+          <xsd:enumeration value="Employment_Type" />
+          <xsd:enumeration value="Contract_Type" />
+          <xsd:enumeration value="Contract_Number" />
+          <xsd:enumeration value="Contract_Length" />
+          <xsd:enumeration value="Contract_Start_Date" />
+          <xsd:enumeration value="Contract_End_Date" />
+          <xsd:enumeration value="Acting_No" />
+          <xsd:enumeration value="Control58" />
+          <xsd:enumeration value="Acting_Description" />
+          <xsd:enumeration value="Relieved_Employee" />
+          <xsd:enumeration value="Relieved_Name" />
+          <xsd:enumeration value="Start_Date" />
+          <xsd:enumeration value="End_Date" />
+          <xsd:enumeration value="Reason_for_Acting" />
+          <xsd:enumeration value="Employment_Date" />
+          <xsd:enumeration value="Status" />
+          <xsd:enumeration value="Inactive_Date" />
+          <xsd:enumeration value="Cause_of_Inactivity_Code" />
+          <xsd:enumeration value="Termination_Date" />
+          <xsd:enumeration value="Grounds_for_Term_Code" />
+          <xsd:enumeration value="Emplymt_Contract_Code" />
+          <xsd:enumeration value="Statistics_Group_Code" />
+          <xsd:enumeration value="Resource_No" />
+          <xsd:enumeration value="Salespers_Purch_Code" />
+          <xsd:enumeration value="Birth_Date" />
+          <xsd:enumeration value="Social_Security_No" />
+          <xsd:enumeration value="Union_Code" />
+          <xsd:enumeration value="Union_Membership_No" />
+          <xsd:enumeration value="Disabled" />
+          <xsd:enumeration value="Disability" />
+          <xsd:enumeration value="Disability_Certificate" />
+          <xsd:enumeration value="Date_of_Birth_Age" />
+          <xsd:enumeration value="ID_No" />
+          <xsd:enumeration value="Marital_Status" />
+          <xsd:enumeration value="Religion" />
+          <xsd:enumeration value="Ethnic_Origin" />
+          <xsd:enumeration value="Ethnic_Community" />
+          <xsd:enumeration value="Ethnic_Name" />
+          <xsd:enumeration value="Home_District" />
+          <xsd:enumeration value="First_Language" />
+          <xsd:enumeration value="Second_Language" />
+          <xsd:enumeration value="Other_Language" />
+          <xsd:enumeration value="Employee_Posting_Group" />
+          <xsd:enumeration value="Application_Method" />
+          <xsd:enumeration value="Bank_Branch_No" />
+          <xsd:enumeration value="Bank_Account_No" />
+          <xsd:enumeration value="IBAN" />
+          <xsd:enumeration value="SWIFT_Code" />
+          <xsd:enumeration value="PIN_Number" />
+          <xsd:enumeration value="NHIF_No" />
+          <xsd:enumeration value="Pay_Mode" />
+          <xsd:enumeration value="Employee_x0027_s_Bank" />
+          <xsd:enumeration value="Employee_Bank_Name" />
+          <xsd:enumeration value="Bank_Branch" />
+          <xsd:enumeration value="Employee_Branch_Name" />
+          <xsd:enumeration value="Employee_Bank_Sort_Code" />
+          <xsd:enumeration value="Bank_Account_Number" />
+          <xsd:enumeration value="Posting_Group" />
+          <xsd:enumeration value="Gratuity_Vendor_No" />
+          <xsd:enumeration value="Debtor_Code" />
+          <xsd:enumeration value="Employee_Type" />
+          <xsd:enumeration value="Salary_Scale" />
+          <xsd:enumeration value="Present" />
+          <xsd:enumeration value="Previous" />
+          <xsd:enumeration value="Halt" />
+          <xsd:enumeration value="Incremental_Month" />
+          <xsd:enumeration value="Pays_tax_x003F_" />
+          <xsd:enumeration value="Secondary_Employee" />
+          <xsd:enumeration value="Insurance_Relief" />
+          <xsd:enumeration value="Pro_Rata_Calculated" />
+          <xsd:enumeration value="CurrBasicPay" />
+          <xsd:enumeration value="Basic_Pay" />
+          <xsd:enumeration value="House_Allowance" />
+          <xsd:enumeration value="Insurance_Premium" />
+          <xsd:enumeration value="Total_Allowances" />
+          <xsd:enumeration value="Total_Deductions" />
+          <xsd:enumeration value="Taxable_Allowance" />
+          <xsd:enumeration value="Cumm_PAYE" />
+          <xsd:enumeration value="Date_Of_Join" />
+          <xsd:enumeration value="Probation_Period" />
+          <xsd:enumeration value="End_Of_Probation_Date" />
+          <xsd:enumeration value="Pension_Scheme_Join" />
+          <xsd:enumeration value="Medical_Scheme_Join" />
+          <xsd:enumeration value="Retirement_Date" />
+          <xsd:enumeration value="Notice_Period" />
+          <xsd:enumeration value="Send_Alert_to" />
+          <xsd:enumeration value="Served_Notice_Period" />
+          <xsd:enumeration value="Date_Of_Leaving" />
+          <xsd:enumeration value="Termination_Category" />
+          <xsd:enumeration value="Exit_Interview_Date" />
+          <xsd:enumeration value="Exit_Interview_Done_by" />
+          <xsd:enumeration value="Allow_Re_Employment_In_Future" />
+          <xsd:enumeration value="Annual_Leave_Days" />
+          <xsd:enumeration value="Compassionate_Leave_Days" />
+          <xsd:enumeration value="Maternity_Leave_Days" />
+          <xsd:enumeration value="Paternity_Leave_Days" />
+          <xsd:enumeration value="Sick_Leave_Days" />
+          <xsd:enumeration value="Study_Leave_Days" />
+          <xsd:enumeration value="Other_Leave_Days_Total" />
+          <xsd:enumeration value="Total_Leave_Balance" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="EmployeeCard_Filter">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Field" type="tns:EmployeeCard_Fields" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="Criteria" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="Read">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="No" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Read_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="EmployeeCard" type="tns:EmployeeCard" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadByRecId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="recId" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadByRecId_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="EmployeeCard" type="tns:EmployeeCard" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadMultiple">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="unbounded" name="filter" type="tns:EmployeeCard_Filter" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="bookmarkKey" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="setSize" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadMultiple_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ReadMultiple_Result" type="tns:EmployeeCard_List" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IsUpdated">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Key" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="IsUpdated_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="IsUpdated_Result" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetRecIdFromKey">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Key" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetRecIdFromKey_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="GetRecIdFromKey_Result" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Create">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="EmployeeCard" type="tns:EmployeeCard" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Create_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="EmployeeCard" type="tns:EmployeeCard" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateMultiple">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="EmployeeCard_List" type="tns:EmployeeCard_List" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CreateMultiple_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="EmployeeCard_List" type="tns:EmployeeCard_List" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Update">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="EmployeeCard" type="tns:EmployeeCard" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Update_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="EmployeeCard" type="tns:EmployeeCard" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateMultiple">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="EmployeeCard_List" type="tns:EmployeeCard_List" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UpdateMultiple_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="EmployeeCard_List" type="tns:EmployeeCard_List" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Delete">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Key" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Delete_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Delete_Result" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Delete_Policies">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Policies_Key" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Delete_Policies_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Delete_Policies_Result" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Delete_Inactivity">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Inactivity_Key" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Delete_Inactivity_Result">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Delete_Inactivity_Result" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+  <message name="Read">
+    <part name="parameters" element="tns:Read" />
+  </message>
+  <message name="Read_Result">
+    <part name="parameters" element="tns:Read_Result" />
+  </message>
+  <message name="ReadByRecId">
+    <part name="parameters" element="tns:ReadByRecId" />
+  </message>
+  <message name="ReadByRecId_Result">
+    <part name="parameters" element="tns:ReadByRecId_Result" />
+  </message>
+  <message name="ReadMultiple">
+    <part name="parameters" element="tns:ReadMultiple" />
+  </message>
+  <message name="ReadMultiple_Result">
+    <part name="parameters" element="tns:ReadMultiple_Result" />
+  </message>
+  <message name="IsUpdated">
+    <part name="parameters" element="tns:IsUpdated" />
+  </message>
+  <message name="IsUpdated_Result">
+    <part name="parameters" element="tns:IsUpdated_Result" />
+  </message>
+  <message name="GetRecIdFromKey">
+    <part name="parameters" element="tns:GetRecIdFromKey" />
+  </message>
+  <message name="GetRecIdFromKey_Result">
+    <part name="parameters" element="tns:GetRecIdFromKey_Result" />
+  </message>
+  <message name="Create">
+    <part name="parameters" element="tns:Create" />
+  </message>
+  <message name="Create_Result">
+    <part name="parameters" element="tns:Create_Result" />
+  </message>
+  <message name="CreateMultiple">
+    <part name="parameters" element="tns:CreateMultiple" />
+  </message>
+  <message name="CreateMultiple_Result">
+    <part name="parameters" element="tns:CreateMultiple_Result" />
+  </message>
+  <message name="Update">
+    <part name="parameters" element="tns:Update" />
+  </message>
+  <message name="Update_Result">
+    <part name="parameters" element="tns:Update_Result" />
+  </message>
+  <message name="UpdateMultiple">
+    <part name="parameters" element="tns:UpdateMultiple" />
+  </message>
+  <message name="UpdateMultiple_Result">
+    <part name="parameters" element="tns:UpdateMultiple_Result" />
+  </message>
+  <message name="Delete">
+    <part name="parameters" element="tns:Delete" />
+  </message>
+  <message name="Delete_Result">
+    <part name="parameters" element="tns:Delete_Result" />
+  </message>
+  <message name="Delete_Policies">
+    <part name="parameters" element="tns:Delete_Policies" />
+  </message>
+  <message name="Delete_Policies_Result">
+    <part name="parameters" element="tns:Delete_Policies_Result" />
+  </message>
+  <message name="Delete_Inactivity">
+    <part name="parameters" element="tns:Delete_Inactivity" />
+  </message>
+  <message name="Delete_Inactivity_Result">
+    <part name="parameters" element="tns:Delete_Inactivity_Result" />
+  </message>
+  <portType name="EmployeeCard_Port">
+    <operation name="Read">
+      <input name="Read" message="tns:Read" />
+      <output name="Read_Result" message="tns:Read_Result" />
+    </operation>
+    <operation name="ReadByRecId">
+      <input name="ReadByRecId" message="tns:ReadByRecId" />
+      <output name="ReadByRecId_Result" message="tns:ReadByRecId_Result" />
+    </operation>
+    <operation name="ReadMultiple">
+      <input name="ReadMultiple" message="tns:ReadMultiple" />
+      <output name="ReadMultiple_Result" message="tns:ReadMultiple_Result" />
+    </operation>
+    <operation name="IsUpdated">
+      <input name="IsUpdated" message="tns:IsUpdated" />
+      <output name="IsUpdated_Result" message="tns:IsUpdated_Result" />
+    </operation>
+    <operation name="GetRecIdFromKey">
+      <input name="GetRecIdFromKey" message="tns:GetRecIdFromKey" />
+      <output name="GetRecIdFromKey_Result" message="tns:GetRecIdFromKey_Result" />
+    </operation>
+    <operation name="Create">
+      <input name="Create" message="tns:Create" />
+      <output name="Create_Result" message="tns:Create_Result" />
+    </operation>
+    <operation name="CreateMultiple">
+      <input name="CreateMultiple" message="tns:CreateMultiple" />
+      <output name="CreateMultiple_Result" message="tns:CreateMultiple_Result" />
+    </operation>
+    <operation name="Update">
+      <input name="Update" message="tns:Update" />
+      <output name="Update_Result" message="tns:Update_Result" />
+    </operation>
+    <operation name="UpdateMultiple">
+      <input name="UpdateMultiple" message="tns:UpdateMultiple" />
+      <output name="UpdateMultiple_Result" message="tns:UpdateMultiple_Result" />
+    </operation>
+    <operation name="Delete">
+      <input name="Delete" message="tns:Delete" />
+      <output name="Delete_Result" message="tns:Delete_Result" />
+    </operation>
+    <operation name="Delete_Policies">
+      <input name="Delete_Policies" message="tns:Delete_Policies" />
+      <output name="Delete_Policies_Result" message="tns:Delete_Policies_Result" />
+    </operation>
+    <operation name="Delete_Inactivity">
+      <input name="Delete_Inactivity" message="tns:Delete_Inactivity" />
+      <output name="Delete_Inactivity_Result" message="tns:Delete_Inactivity_Result" />
+    </operation>
+  </portType>
+  <binding name="EmployeeCard_Binding" type="tns:EmployeeCard_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="Read">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/employeecard:Read" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Read">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Read_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ReadByRecId">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/employeecard:ReadByRecId" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ReadByRecId">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ReadByRecId_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ReadMultiple">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/employeecard:ReadMultiple" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ReadMultiple">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ReadMultiple_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="IsUpdated">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/employeecard:IsUpdated" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="IsUpdated">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="IsUpdated_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetRecIdFromKey">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/employeecard:GetRecIdFromKey" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetRecIdFromKey">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetRecIdFromKey_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="Create">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/employeecard:Create" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Create">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Create_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CreateMultiple">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/employeecard:CreateMultiple" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CreateMultiple">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CreateMultiple_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="Update">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/employeecard:Update" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Update">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Update_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateMultiple">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/employeecard:UpdateMultiple" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateMultiple">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateMultiple_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="Delete">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/employeecard:Delete" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Delete">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Delete_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="Delete_Policies">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/employeecard:Delete_Policies" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Delete_Policies">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Delete_Policies_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="Delete_Inactivity">
+      <operation soapAction="urn:microsoft-dynamics-schemas/page/employeecard:Delete_Inactivity" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Delete_Inactivity">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Delete_Inactivity_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="EmployeeCard_Service">
+    <port name="EmployeeCard_Port" binding="tns:EmployeeCard_Binding">
+      <address location="http://agileapp.agilebiz.co.ke:8875/NIAFIBER/WS/NIA/Page/EmployeeCard" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

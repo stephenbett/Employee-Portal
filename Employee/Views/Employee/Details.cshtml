@@ -1,0 +1,136 @@
+﻿@model Employee.EmployeeCardRef.EmployeeCard
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <style>
+        /* Custom CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h4 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: bold;
+            background-color: #f2f2f2;
+        }
+
+        .actions {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .actions a {
+                display: inline-block;
+                margin-right: 10px;
+                padding: 8px 16px;
+                background-color: #4CAF50;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+            }
+
+                .actions a:hover {
+                    background-color: #45a049;
+                }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #999;
+            text-decoration: none;
+        }
+
+            .back-link:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h4>Employee Card Details</h4>
+        <table>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Key)</th>
+                <td>@Html.DisplayFor(model => model.Key)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.No)</th>
+                <td>@Html.DisplayFor(model => model.No)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.First_Name)</th>
+                <td>@Html.DisplayFor(model => model.First_Name)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Middle_Name)</th>
+                <td>@Html.DisplayFor(model => model.Middle_Name)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Last_Name)</th>
+                <td>@Html.DisplayFor(model => model.Last_Name)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Job_Title)</th>
+                <td>@Html.DisplayFor(model => model.Job_Title)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Initials)</th>
+                <td>@Html.DisplayFor(model => model.Initials)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Search_Name)</th>
+                <td>@Html.DisplayFor(model => model.Search_Name)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.GenderSpecified)</th>
+                <td>@Html.DisplayFor(model => model.GenderSpecified)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Phone_No_2)</th>
+                <td>@Html.DisplayFor(model => model.Phone_No_2)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Company_E_Mail)</th>
+                <td>@Html.DisplayFor(model => model.Company_E_Mail)</td>
+            </tr>
+        </table>
+
+        <div class="actions">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "back-link" })
+        </div>
+    </div>
+</body>
+</html>

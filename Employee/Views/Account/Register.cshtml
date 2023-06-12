@@ -1,0 +1,117 @@
+﻿@model Employee.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Create an Account</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~Themes/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                       <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+                            <form class="user">
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.EmployeeNo, new { @class = "col-md-2 col-form-label" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.EmployeeNo, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.EmployeeNo)
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
+                                    <div class="col-md-5">
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
+                                    <div class="col-md-5">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 col-form-label" })
+                                    <div class="col-md-5">
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="offset-md-2 col-md-5">
+                                        <input type="submit" value="Register" class="btn btn-outline-dark" formaction="@Url.Action("Login", "Account")" />
+                                    </div>
+                                </div>
+
+
+                            </form>
+                            <hr>
+                            <p>
+                                @Html.ActionLink("Already have an account", "Login", "Account", new { area = "" }, new { @class = "nav-link" })
+
+                            </p>
+                            
+                        </div>
+                    </div> 
+                
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~Themes/vendor/jquery/jquery.min.js"></script>
+    <script src="~Themes/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~Themes/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~Themes/js/sb-admin-2.min.js"></script>
+
+</body>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

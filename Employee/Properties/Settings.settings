@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Employee.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Employee_EmployeesRef_Employees_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://agileapp.agilebiz.co.ke:8875/NIAFIBER/WS/LIVE%20NIA/Page/Employees</Value>
+    </Setting>
+    <Setting Name="Employee_EmployeeCardRef_EmployeeCard_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://agileapp.agilebiz.co.ke:8875/NIAFIBER/WS/NIA/Page/EmployeeCard</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

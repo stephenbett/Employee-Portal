@@ -1,0 +1,83 @@
+﻿@model Employee.Models.CreateViewModel
+
+
+<h2>Create Employee</h2>
+
+<div class="employee-form">
+    @using (Html.BeginForm("CreateEmployee", "User", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m =>m.FirstName)
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName)
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+        </div>
+
+    <div class="form-group">
+            @Html.LabelFor(m => m.AccountNo)
+            @Html.TextBoxFor(m => m.AccountNo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.AccountNo, "", new { @class = "text-danger" })
+
+        </div>
+
+    <div class="form-group">
+            @Html.LabelFor(m => m.UserID)
+            @Html.TextBoxFor(m => m.UserID, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UserID, "", new { @class = "text-danger" })
+        </div>
+
+    <div class="form-group">
+            @Html.LabelFor(m => m.PinNumber)
+            @Html.TextBoxFor(m => m.PinNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PinNumber, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- Add more user details as needed -->
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    }
+</div>
+
+<style>
+    .employee-form {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        width: 400px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .text-danger {
+        color: red;
+    }
+</style>
+
+
